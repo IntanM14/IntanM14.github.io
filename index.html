@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CV Intan Munawaroh</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fdf6f9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .sidebar {
+            background: #f8e1ec;
+            color: #444;
+            min-height: 100vh;
+            border-right: 1px solid #eee;
+        }
+
+        .custom-navbar {
+            background: linear-gradient(90deg, #f8d7e3, #eec9d2);
+        }
+
+        .custom-navbar .nav-link {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .custom-navbar .nav-link:hover {
+            color: #c94f7c;
+        }
+
+        .custom-navbar .navbar-brand {
+            color: #c94f7c;
+            font-weight: bold;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: #c94f7c;
+        }
+
+        .portfolio-img {
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .portfolio-img:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-card {
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .portfolio-img {
+            border-radius: 15px 15px 0 0;
+            height: 200px;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .portfolio-img:hover {
+            transform: scale(1.03);
+        }
+
+        .portfolio-card {
+            transition: 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn {
+            border-radius: 12px;
+        }
+
+        .social-icon i {
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-icon i:hover {
+            transform: scale(1.3);
+        }
+
+        .email-link {
+            color: #c94f7c;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .email-link:hover {
+            color: #a63d66;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                text-align: center;
+                padding: 20px;
+            }
+
+            .profile-img {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">CV Intan Munawaroh</a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pendidikan">Pendidikan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#organisasi">Organisasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#prestasi">Prestasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portofolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skill">Kemampuan</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-3 p-4 text-center sidebar" data-aos="fade-right">
+
+                <img src="foto/im.jpeg" class="profile-img mb-3" data-bs-toggle="modal" data-bs-target="#p">
+
+                <h4>Intan Munawaroh</h4>
+                <p class="text-muted">Pelajar</p>
+
+                <button class="btn btn-primary w-100 mb-3" onclick="window.print()">
+                    <i class="bi bi-download"></i> Download CV
+                </button>
+
+                <hr>
+
+                <p><b>Alamat:</b><br>
+                    <br>Kutawaluh rt 05 rw 01,<br> Desa Jebengplampitan, <br> Kecamatan Sukoharjo,
+                    <br> Kabupaten Wonosobo,<br> Provinsi Jawa Tengah,<br> Negara Indonesia
+                </p>
+
+                <p>
+                    <b>Email:</b><br>
+                    <a href="mailto:intan140809@gmail.com" class="email-link">
+                        <i class="bi bi-envelope-fill me-1"></i>
+                        intan140809@gmail.com
+                    </a>
+                </p>
+
+                <div class="social-icon">
+                    <a href="https://www.instagram.com/_im14____?igsh=MWJ3b29ydmNreTdrdg==" target="_blank"
+                        class="text-danger me-3">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@_nataa14___?_r=1&_t=ZS-94z7kjbKvCv" target="_blank"
+                        class="text-dark me-3">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+
+                    <a href="https://github.com/IntanM14" target="_blank" class="text-secondary">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-md-9 p-4">
+
+                <div id="tentang" class="card mb-4 shadow-sm" data-aos="fade-up">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Tentang Saya</h5>
+                        <p>Saya merupakan siswa kelas X SMK Negeri 1 Bawang jurusan Pengembangan Perangkat Lunak dan Gim
+                            (PPLG) dengan konsentrasi Rekayasa Perangkat Lunak (RPL).
+                            Saya memiliki semangat belajar yang tinggi, disiplin, dan bertanggung jawab dalam
+                            menyelesaikan setiap tugas. Saya mampu bekerja secara mandiri maupun dalam tim, serta
+                            memiliki kemampuan komunikasi yang
+                            baik. Saya memiliki minat yang besar di bidang teknologi,
+                            khususnya dalam pengembangan perangkat lunak, dan terus berusaha mengembangkan keterampilan
+                            serta pengetahuan untuk mempersiapkan diri menghadapi dunia kerja di masa depan.</p>
+                    </div>
+                </div>
+
+                <div id="pendidikan" class="card mb-4 shadow-sm" data-aos="fade-up">
+                    <div class="card-body">
+                        <h5 class="card-title">Pendidikan</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="https://smkn1bawang.sch.id" target="_blank">
+                            <b>SMK Negeri 1 Bawang</b>
+                        </a><br>
+                                Saat ini saya masih berstatus sebagai pelajar aktif yang sedang menempuh pendidikan dan
+                                mengembangkan keterampilan sesuai bidang keahlian yang saya pilih yaitu Pengembangan
+                                Perangkat Lunak dan Gim dengan konsentrasi Rekayasa Perangkat Lunak .
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://sekolah.data.kemendikdasmen.go.id/profil-sekolah/504F295A-2DF5-E011-ABCA-9BAFC166A6DC" target="_blank">
+                            <b>SMP Negeri 2 Sukoharjo</b>
+                        </a><br>
+                                Saya merupakan alumni SMP Negeri 2 Sukoharjo yang telah menyelesaikan pendidikan
+                                menengah pertama dengan pengalaman belajar yang aktif dan menyenangkan. Masa SMP menjadi
+                                salah satu periode paling berkesan bagi saya, dengan banyak kenangan indah yang tidak
+                                terlupakan selama masa biru putih.
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://sekolah.data.kemendikdasmen.go.id/profil-sekolah/00293D56-2DF5-E011-81E0-09D20EE28E22" target="_blank">
+                            <b>SD Negeri Jebengplampitan</b>
+                        </a><br>
+                                Saya merupakan alumni SD Negeri Jebengplampitan yang telah menyelesaikan pendidikan
+                                dasar dengan penuh pengalaman berharga. Masa sekolah dasar menjadi awal perjalanan saya
+                                dalam mengenal dunia pendidikan serta membentuk karakter dan kebiasaan belajar.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="organisasi" class="card mb-4 shadow-sm" data-aos="fade-up">
+                    <div class="card-body">
+                        <h5 class="card-title">Organisasi</h5>
+                        <ul>
+                            <li><b>OSIS</b> - Bendahara (2023–2025)</li>
+                            <li><b>Pramuka</b> - Dewan Penggalang (2023–2025)</li>
+                            <li><b>PMR</b> - Ketua (2024–2025)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="prestasi" class="card mb-4 shadow-sm" data-aos="fade-up">
+                    <div class="card-body">
+                        <h5 class="card-title">Prestasi</h5>
+                        <ul>
+                            <li>Juara Harapan 1 Geguritan tingkat Kabupaten<br><b>SMP</b></li>
+                            <li>Juara 3 Voli tingkat Kabupaten<br><b>SD</b></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="portfolio" class="card mb-4 shadow-sm" data-aos="zoom-in">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mb-4">Portofolio</h5>
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm portfolio-card">
+                                    <img src="foto/MOCKUP kripik salak_20365 .png" class="card-img-top portfolio-img"
+                                        data-bs-toggle="modal" data-bs-target="#p1">
+                                    <div class="card-body">
+                                        <h6 class="fw-bold">Mockup Keripik Salak</h6>
+                                        <p class="text-muted small">
+                                            Mockup ini tidak hanya menampilkan tampilan desain, tetapi juga menunjukkan
+                                            bagaimana desain diaplikasikan pada kotak kemasan lipat secara nyata. Hal
+                                            ini membantu dalam proses evaluasi desain sebelum masuk ke tahap produksi.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm portfolio-card">
+                                    <img src="foto/intan.jpg" class="card-img-top portfolio-img" data-bs-toggle="modal"
+                                        data-bs-target="#p2">
+                                    <div class="card-body">
+                                        <h6 class="fw-bold">Mendesain siluet tubuh</h6>
+                                        <p class="text-muted small">
+                                            Desain pertama menampilkan ilustrasi siluet seorang perempuan dengan pose
+                                            menyamping yang sederhana namun kuat secara visual. Penggunaan warna hitam
+                                            sebagai siluet memberikan kesan elegan, misterius, dan minimalis. Latar
+                                            berbentuk lingkaran dengan warna cokelat keabu-abuan menciptakan kontras
+                                            yang sei
+                                            Konsep ini mewakili identitas personal atau karakter brand yang anggun dan
+                                            berkelas. Gaya visual yang minimalis juga </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm portfolio-card">
+                                    <img src="foto/logo kripik salak_20365.png" class="card-img-top portfolio-img"
+                                        data-bs-toggle="modal" data-bs-target="#p3">
+                                    <div class="card-body">
+                                        <h6 class="fw-bold">Logo Keripik Salak</h6>
+                                        <p class="text-muted small">
+                                            Logo “Incill KS” yaitu Incil (Intan kecil) dan KS (Keripik Salak) memiliki
+                                            kesan hangat dan manis
+                                            Tulisan “KS” dibuat elegan biar terlihat lebih premium, tapi tetap dipadukan
+                                            dengan elemen lucu berupa karakter salak di bawahnya. Ini membuat merek
+                                            terasa lebih bersahabat, mudah diingat, dan cocok untuk semua
+                                            Background yang mirip matahari juga ngaasih makna semangat dan energi
+                                            positif—seolah menggambarkan produk yang segar dan penuh cita rasa. </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm portfolio-card">
+
+                                    <img src="foto/portalberita.png" class="card-img-top" alt="Portal Berita"
+                                        data-bs-toggle="modal" data-bs-target="#p4">
+
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="fw-bold">Website Portal Berita</h5>
+
+                                        <p class="text-muted small">
+                                            Mengembangkan website portal berita menggunakan HTML, CSS, dan PHP
+                                            dengan fitur login, manajemen artikel (CRUD), serta tampilan responsif.
+                                        </p>
+
+                                        <div class="mt-auto">
+                                            <a href="portalberita-20365/index.php" target="_blank"
+                                                class="btn btn-sm btn-primary">
+                                                🔗 Lihat Project
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm portfolio-card">
+
+                                    <img src="foto/tiketbioskop.png" class="card-img-top" alt="Figma Design"
+                                        data-bs-toggle="modal" data-bs-target="#p5">
+
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="fw-bold">UI/UX Design Aplikasi</h5>
+
+                                        <p class="text-muted small">
+                                            Aplikasi ini merupakan desain UI/UX mobile bertema pemesanan tiket bioskop
+                                            dengan tampilan modern dan dominasi warna pink yang memberikan kesan menarik
+                                            dan ramah pengguna. Alur aplikasi dirancang lengkap mulai dari halaman awal
+                                            (splash screen), login dan pendaftaran, pemilihan film, detail film, jadwal
+                                            pemilihan, hingga pemilihan kursi dan proses pembayaran. Selain itu,
+                                            terdapat fitur tambahan seperti profil pengguna dan konfirmasi tiket dengan
+                                            kode QR untuk memudahkan proses masuk ke bioskop. Desain ini adalah
+                                            kemudahan navigasi, konsistensi visual, serta pengalaman pengguna yang
+                                            sederhana namun tetap interaktif.
+                                        </p>
+
+                                        <div class="mt-auto">
+                                            <a href="https://www.figma.com/design/CHULiCF2RUQafaxwr2z9Dl/Untitled?node-id=0-1&t=xmHZ1TkN3POVL8TU-1"
+                                                target="_blank" class="btn btn-sm btn-danger">
+                                                🎨 Lihat di Figma
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm portfolio-card">
+
+                                    <img src="foto/login.png" class="card-img-top" alt="Figma Design"
+                                        data-bs-toggle="modal" data-bs-target="#p6">
+
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="fw-bold">UI/UX Design Aplikasi</h5>
+
+                                        <p class="text-muted small">
+                                            Desain UI/UX aplikasi mobile ini dibuat menggunakan Figma dengan fokus pada
+                                            tampilan modern, clean, dan user-friendly. Proyek ini mencakup beberapa
+                                            halaman utama seperti login, pendaftaran akun, lupa password, dan verifikasi
+                                            OTP. Menggunakan kombinasi warna soft ungu dan putih, desain ini memberikan
+                                            kesan sederhana namun elegan, serta dirancang dengan alur navigasi yang
+                                            jelas untuk memudahkan pengalaman pengguna.
+                                        </p>
+
+                                        <div class="mt-auto">
+                                            <a href="https://www.figma.com/design/mHyyvXSM3VubkUJp5Gw6H3/Untitled?t=xmHZ1TkN3POVL8TU-1"
+                                                target="_blank" class="btn btn-sm btn-danger">
+                                                🎨 Lihat di Figma
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="skill" class="card shadow-sm" data-aos="fade-up">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mb-3">Kemampuan (Skills)</h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <h6 class="text-primary">Hard Skills</h6>
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item">Mampu menggunakan Microsoft Office (Word, PowerPoint,
+                                        Excel dasar) dengan baik</li>
+                                    <li class="list-group-item">Mampu memahami Dasar Web Development (HTML,PHP dan CSS)
+                                    </li>
+                                    <li class="list-group-item">Dapat membuat tampilan website sederhana</li>
+                                    <li class="list-group-item">Mampu menggunakan komputer dan internet secara efektif
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h6 class="text-success">Soft Skills</h6>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Kemampuan komunikasi yang baik (lisan dan tulisan)</li>
+                                    <li class="list-group-item">Mampu bekerja sama dalam tim maupun secara mandiri</li>
+                                    <li class="list-group-item">Manajemen waktu yang baik dan bertanggung jawab</li>
+                                    <li class="list-group-item">Mampu beradaptasi dengan lingkungan baru</li>
+                                    <li class="list-group-item">Kemampuan berpikir kritis dan problem solving dasar</li>
+                                    <li class="list-group-item">Percaya diri dalam menyampaikan pendapat</li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="p">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="foto/im.jpeg" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="p1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="foto/MOCKUP kripik salak_20365 .png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="p2">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="foto/intan.jpg" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="p3">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="foto/logo kripik salak_20365.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="p4">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="foto/portalberita.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="p5">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="foto/tiketbioskop.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="p6">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="foto/login.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+</body>
+
+</html>
