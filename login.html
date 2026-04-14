@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Pastel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background gambar + blur + pastel */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(rgba(255, 214, 224, 0.6), rgba(214, 240, 255, 0.6)),
+                url('foto20365/bg.jpg') no-repeat center center/cover;
+            filter: blur(6px);
+            z-index: -1;
+        }
+
+        .login-box {
+            background: #ffffffcc;
+            backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            color: #555;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #ff8fab;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ffb3c6;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #ffb3c6;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff8fab;
+        }
+
+        /* POPUP */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            width: 260px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: muncul 0.3s ease;
+        }
+
+        .popup-box.success h3 {
+            color: #2e7d32;
+        }
+
+        .popup-box.error h3 {
+            color: #b00020;
+        }
+
+        .popup-box button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            background: #ff8fab;
+            color: white;
+            cursor: pointer;
+        }
+
+        .popup-box button:hover {
+            background: #ff5c8a;
+        }
+
+        @keyframes muncul {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>Login</h2>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">LOGIN</button>
+    </div>
+
+    <!-- POPUP -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div id="popupBox" class="popup-box">
+            <h3 id="popupMessage"></h3>
+            <button onclick="closePopup()">OKAY</button>
+        </div>
+    </div>
+
+    <script>
+        function showPopup(message, type) {
+            const overlay = document.getElementById("popupOverlay");
+            const box = document.getElementById("popupBox");
+            const msg = document.getElementById("popupMessage");
+
+            msg.innerText = message;
+            box.className = "popup-box " + type;
+
+            overlay.style.display = "flex";
+        }
+
+        function closePopup() {
+            document.getElementById("popupOverlay").style.display = "none";
+        }
+
+        function login() {
+            const userBenar = "intan imut";
+            const passBenar = "140809";
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === userBenar && password === passBenar) {
+                showPopup("Login berhasil 😻", "success");
+            } else {
+                showPopup("Login gagal 😢", "error");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
