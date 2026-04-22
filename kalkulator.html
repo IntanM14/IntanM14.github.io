@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Intan Munawaroh</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+        }
+
+        /* BACKGROUND GERAK */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(-45deg, #e0f2fe, #fec7eb, #c7d2fe, #a7f3d0);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* GLASS CARD */
+        .main-app {
+            position: relative;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            width: 100%;
+            max-width: 380px;
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* SHINE EFFECT */
+        .main-app::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 6s linear infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translate(-100%, -100%);
+            }
+
+            100% {
+                transform: translate(100%, 100%);
+            }
+        }
+
+        /* DISPLAY */
+        #display {
+            width: 100%;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            padding: 15px;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        /* BUTTON */
+        button {
+            height: 60px;
+            border: none;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 5px 0 #e2e8f0;
+            transition: all 0.15s ease;
+        }
+
+        /* KLIK */
+        button:active {
+            transform: scale(0.9);
+            box-shadow: 0 2px 0 #e2e8f0;
+        }
+
+        /* WARNA */
+        .num {
+            color: #334155;
+        }
+
+        .op {
+            background: #fff7ed;
+            color: #ea580c;
+            box-shadow: 0 5px 0 #fed7aa;
+        }
+
+        .del {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .eq {
+            background: #0ea5e9;
+            color: white;
+            grid-column: span 2;
+        }
+
+        /* RESPONSIVE HP */
+        @media (max-width: 400px) {
+            #display {
+                font-size: 26px;
+            }
+
+            button {
+                font-size: 18px;
+            }
+        }
+
+        /* Header Tab */
+        .tabs {
+            display: flex;
+            background: rgba(0, 0, 0, 0.03);
+            padding: 8px;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            background: transparent;
+            color: #64748b;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Tampilan Layar */
+        .screen-area {
+            padding: 20px;
+        }
+
+        #display {
+            width: 100%;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            padding: 15px;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: right;
+            color: #1e293b;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #display:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Grid Tombol */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .toggle-sci {
+            grid-column: span 4;
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 11px;
+            height: 30px;
+            border-radius: 20px;
+            border: 1px dashed #cbd5e1;
+            margin-bottom: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #sci-panel {
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            grid-column: span 4;
+            margin-bottom: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Style Tombol */
+        button {
+            height: 60px;
+            border: none;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            box-shadow: 0 5px 0 #e2e8f0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* EFEK KLIK SQUISHY */
+        button:active {
+            transform: scale(0.85);
+            box-shadow: 0 2px 0 #e2e8f0;
+            filter: brightness(0.95);
+        }
+
+        .num {
+            color: #334155;
+        }
+
+        .sci {
+            background: #f5f3ff;
+            color: #7c3aed;
+            font-size: 15px;
+            box-shadow: 0 5px 0 #ddd6fe;
+        }
+
+        .op {
+            background: #fff7ed;
+            color: #ea580c;
+            box-shadow: 0 5px 0 #fed7aa;
+        }
+
+        .del {
+            background: #fee2e2;
+            color: #dc2626;
+            box-shadow: 0 5px 0 #fecaca;
+        }
+
+        .eq {
+            background: #0ea5e9;
+            color: white;
+            grid-column: span 2;
+            box-shadow: 0 5px 0 #0284c7;
+            font-size: 16px;
+        }
+
+        /* Section Riwayat */
+        .content-section {
+            display: none;
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+
+        .hist-item {
+            background: white;
+            padding: 15px;
+            border-radius: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+    </style>
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="main-app">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('calc-ui', this)">Kalkulator</button>
+            <button class="tab-btn" onclick="openTab('hist-ui', this)">Riwayat 📚</button>
+        </div>
+
+        <!-- TAMPILAN KALKULATOR -->
+        <div id="calc-ui" class="content-section active">
+            <div class="screen-area">
+                <input type="text" id="display" placeholder="0" readonly>
+                <div class="grid">
+                    <button class="toggle-sci" onclick="toggleSci()">✨ Fitur Lainnya</button>
+
+                    <div id="sci-panel">
+                        <button class="sci" onclick="p('Math.sin(')">sin</button>
+                        <button class="sci" onclick="p('Math.cos(')">cos</button>
+                        <button class="sci" onclick="p('Math.tan(')">tan</button>
+                        <button class="sci" onclick="p('**')">^</button>
+                        <button class="sci" onclick="p('Math.sqrt(')">√</button>
+                        <button class="sci" onclick="p('Math.PI')">π</button>
+                        <button class="sci" onclick="p('(')">(</button>
+                        <button class="sci" onclick="p(')')">)</button>
+                    </div>
+
+                    <button class="del" onclick="clr()">AC</button>
+                    <button class="del" onclick="back()">⌫</button>
+                    <button class="op" onclick="p('/100')">%</button>
+                    <button class="op" onclick="p('/')">÷</button>
+
+                    <button class="num" onclick="p('7')">7</button>
+                    <button class="num" onclick="p('8')">8</button>
+                    <button class="num" onclick="p('9')">9</button>
+                    <button class="op" onclick="p('*')">×</button>
+
+                    <button class="num" onclick="p('4')">4</button>
+                    <button class="num" onclick="p('5')">5</button>
+                    <button class="num" onclick="p('6')">6</button>
+                    <button class="op" onclick="p('-')">-</button>
+
+                    <button class="num" onclick="p('1')">1</button>
+                    <button class="num" onclick="p('2')">2</button>
+                    <button class="num" onclick="p('3')">3</button>
+                    <button class="op" onclick="p('+')">+</button>
+
+                    <button class="num" onclick="p('0')">0</button>
+                    <button class="num" onclick="p('.')">.</button>
+                    <button class="eq" onclick="calc()">=</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAMPILAN RIWAYAT -->
+        <div id="hist-ui" class="content-section">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <h3 style="margin: 0; color: #1e293b;">Riwayat</h3>
+                <button onclick="clearHist()"
+                    style="background:none; box-shadow:none; color:#ef4444; font-size:12px; height:auto;">Hapus
+                    Semua</button>
+            </div>
+            <div id="hist-list">
+                <p style="text-align: center; color: #cbd5e1; margin-top: 50px;">Kosong nih, ayo hitung! ✏️</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const histList = document.getElementById('hist-list');
+
+        // Tab switcher logic
+        function openTab(tabName, btn) {
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Toggle sains panel
+        function toggleSci() {
+            const panel = document.getElementById('sci-panel');
+            const isHidden = panel.style.display === "none" || panel.style.display === "";
+            panel.style.display = isHidden ? "grid" : "none";
+        }
+
+        function p(v) {
+            display.value += v;
+            vibrate();
+        }
+
+        function clr() { display.value = ""; vibrate(); }
+
+        function back() { display.value = display.value.slice(0, -1); vibrate(); }
+
+        function vibrate() {
+            if (navigator.vibrate) navigator.vibrate(15);
+        }
+
+        function calc() {
+    try {
+        let expression = display.value.replace(/×/g, '*').replace(/÷/g, '/');
+        if (!expression) return;
+
+        let result = eval(expression);
+
+        // simpan ke history yang benar
+        saveToHist(display.value, result);
+
+        display.value = result;
+
+    } catch (e) {
+        display.value = "Error";
+        setTimeout(() => display.value = "", 1000);
+    }
+}
+
+        function saveToHist(q, a) {
+            if (histList.innerText.includes("Kosong nih")) histList.innerHTML = "";
+            const div = document.createElement('div');
+            div.className = 'hist-item';
+            let qShow = q.replace(/Math\./g, '');
+            div.innerHTML = `<span>${qShow}</span> <b style="color:var(--primary)">= ${a}</b>`;
+            histList.prepend(div);
+        }
+
+        function clearHist() {
+            histList.innerHTML = '<p style="text-align: center; color: #cbd5e1; margin-top: 50px;">Kosong nih, ayo hitung! ✏️</p>';
+        }
+    </script>
+
+</body>
+
+</html>
