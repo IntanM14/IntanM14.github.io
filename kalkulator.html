@@ -101,13 +101,21 @@
             cursor: pointer;
             background: white;
             box-shadow: 0 5px 0 #e2e8f0;
-            transition: all 0.15s ease;
+
+            transition: none;
         }
 
-        /* KLIK */
+        button {
+            touch-action: manipulation;
+        }
+
         button:active {
-            transform: scale(0.9);
+            transform: none;
             box-shadow: 0 2px 0 #e2e8f0;
+        }
+
+        .main-app::before {
+            pointer-events: none;
         }
 
         /* WARNA */
@@ -416,22 +424,22 @@
         }
 
         function calc() {
-    try {
-        let expression = display.value.replace(/×/g, '*').replace(/÷/g, '/');
-        if (!expression) return;
+            try {
+                let expression = display.value.replace(/×/g, '*').replace(/÷/g, '/');
+                if (!expression) return;
 
-        let result = eval(expression);
+                let result = eval(expression);
 
-        // simpan ke history yang benar
-        saveToHist(display.value, result);
+                // simpan ke history yang benar
+                saveToHist(display.value, result);
 
-        display.value = result;
+                display.value = result;
 
-    } catch (e) {
-        display.value = "Error";
-        setTimeout(() => display.value = "", 1000);
-    }
-}
+            } catch (e) {
+                display.value = "Error";
+                setTimeout(() => display.value = "", 1000);
+            }
+        }
 
         function saveToHist(q, a) {
             if (histList.innerText.includes("Kosong nih")) histList.innerHTML = "";
