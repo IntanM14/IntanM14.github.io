@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Kata Profesi Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('BG.jpeg') center/cover no-repeat fixed;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(18px);
+            border-radius: 30px;
+            padding: 40px;
+            width: 100%;
+            max-width: 750px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.45);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .subtitle {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: #f3f3f3;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .score-box {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            border-radius: 18px;
+            background: rgba(255, 182, 193, 0.45);
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.15);
+        }
+
+        .word-display {
+            font-size: 2.8rem;
+            letter-spacing: 14px;
+            margin: 35px 0;
+            color: #6d28d9;
+            font-weight: bold;
+            text-shadow: 0 0 12px rgba(255, 235, 59, 0.5);
+        }
+
+        .input-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 90px;
+            height: 60px;
+            border-radius: 15px;
+            border: none;
+            outline: none;
+            font-size: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 14px 26px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .guess-btn {
+            background: linear-gradient(45deg, #a7f3d0, #67e8f9);
+            color: white;
+        }
+
+        .guess-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #f9a8d4, #c4b5fd);
+            color: white;
+            margin-top: 20px;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .hint,
+        .message {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            min-height: 35px;
+        }
+
+        .used-letters {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 18px;
+            background: rgba(255, 240, 245, 0.4);
+        }
+
+        .used-letters span {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.55);
+            font-weight: bold;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: #e2e8f0;
+            color: #333;
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            width: 90%;
+            max-width: 420px;
+            animation: popup 0.4s ease;
+        }
+
+        @keyframes popup {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .close-btn {
+            margin-top: 18px;
+            background: linear-gradient(45deg, #1d4ed8, #4338ca);
+            color: white;
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        @media(max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .word-display {
+                font-size: 1.9rem;
+                letter-spacing: 8px;
+            }
+        }
+
+        /* GANTI BAGIAN WARNA TEKS AGAR LEBIH JELAS DAN SERASI */
+
+        /* Logo */
+        .game-container div:first-child {
+            color: #4c1d95;
+            /* ungu tua elegan */
+            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Judul */
+        h1 {
+            color: #312e81;
+            /* biru-ungu gelap */
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.85);
+        }
+
+        /* Subtitle */
+        .subtitle {
+            color: #1e3a8a;
+            /* biru royal */
+            font-weight: 600;
+        }
+
+        /* Score box text */
+        .score-box {
+            color: #4a044e;
+            /* ungu tua */
+        }
+
+        /* Kata profesi */
+        .word-display {
+            color: #6b21a8;
+            /* ungu cerah premium */
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Hint */
+        .hint {
+            color: #0f766e;
+            /* hijau tosca */
+            font-weight: bold;
+        }
+
+        /* Message */
+        .message {
+            color: #9d174d;
+            /* pink tua */
+            font-weight: bold;
+        }
+
+        /* Riwayat huruf */
+        .used-letters {
+            color: #312e81;
+        }
+
+        .used-letters span {
+            color: #4c1d95;
+        }
+
+        /* Input */
+        input {
+            color: #312e81;
+            font-weight: bold;
+        }
+
+        /* Modal default text */
+        .modal-content {
+            color: #1e293b;
+        }
+
+        /* Tombol */
+        button {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-container">
+        <div style="font-size:3rem; margin-bottom:10px; color:#7c3aed; font-weight:bold;">&lt;/&gt;</div>
+        <h1>🎯 Tebak Kata Profesi</h1>
+        <p class="subtitle">Tebak profesi dengan 5 kesempatan dan raih skor tertinggi!</p>
+
+        <div class="score-board">
+            <div class="score-box">⭐ Skor: <span id="score">0</span></div>
+            <div class="score-box">❤️ Kesempatan: <span id="lives">5</span></div>
+        </div>
+
+        <div class="word-display" id="wordDisplay">- - - -</div>
+
+        <div class="input-section">
+            <input type="text" id="letterInput" maxlength="1" placeholder="?">
+            <button class="guess-btn" onclick="guessLetter()">Tebak</button>
+        </div>
+
+        <div class="hint" id="hintText"></div>
+        <div class="message" id="message"></div>
+
+        <div class="used-letters">
+            <strong>Riwayat Huruf:</strong>
+            <div id="history"></div>
+        </div>
+
+        <button class="restart-btn" onclick="startGame()">🔄 Main Lagi</button>
+    </div>
+
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <div class="emoji" id="modalEmoji">🎉</div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <button class="close-btn" onclick="closeModal()">Lanjut</button>
+        </div>
+    </div>
+
+    <script>
+        const professions = [
+            { word: "dokter", hint: "Mengobati pasien" },
+            { word: "guru", hint: "Mengajar di sekolah" },
+            { word: "pilot", hint: "Menerbangkan pesawat" },
+            { word: "polisi", hint: "Menjaga keamanan" },
+            { word: "petani", hint: "Bekerja di sawah" },
+            { word: "nelayan", hint: "Mencari ikan di laut" },
+            { word: "arsitek", hint: "Merancang bangunan" },
+            { word: "programmer", hint: "Membuat software" },
+            { word: "perawat", hint: "Merawat pasien" },
+            { word: "montir", hint: "Memperbaiki kendaraan" },
+            { word: "hakim", hint: "Memutuskan perkara hukum" },
+            { word: "jaksa", hint: "Menuntut di pengadilan" },
+            { word: "penulis", hint: "Membuat buku atau artikel" },
+            { word: "desainer", hint: "Merancang visual kreatif" },
+            { word: "fotografer", hint: "Mengambil gambar profesional" },
+            { word: "chef", hint: "Memasak di restoran" },
+            { word: "akuntan", hint: "Mengelola keuangan" },
+            { word: "ilmuwan", hint: "Meneliti ilmu pengetahuan" },
+            { word: "wartawan", hint: "Mencari dan menulis berita" },
+            { word: "pengacara", hint: "Membela klien di hukum" }
+        ];
+
+        let selectedWord = "";
+        let wordArray = [];
+        let answerArray = [];
+        let lives = 5;
+        let score = 0;
+        let guessedLetters = [];
+        let gameOver = false;
+        let rewardClaimed = false;
+        let wrongAttempts = 0;
+
+        function startGame() {
+
+            const randomData =
+                professions[Math.floor(Math.random() * professions.length)];
+
+            selectedWord = randomData.word.toUpperCase();
+
+            wordArray = selectedWord.split("");
+
+            answerArray =
+                Array(wordArray.length).fill("-");
+
+            lives = 5;
+            guessedLetters = [];
+            gameOver = false;
+            wrongAttempts = 0;
+
+            document.getElementById("hintText").textContent =
+                "💡 Petunjuk: " + randomData.hint;
+
+            document.getElementById("message").textContent = "";
+
+            document.getElementById("letterInput").value = "";
+
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+
+            document.getElementById("wordDisplay").textContent =
+                answerArray.join(" ");
+
+            document.getElementById("lives").textContent =
+                lives;
+
+            document.getElementById("score").textContent =
+                score;
+
+            document.getElementById("history").innerHTML =
+                guessedLetters.map(letter =>
+                    `<span>${letter}</span>`
+                ).join("");
+        }
+
+        function guessLetter() {
+
+            if (gameOver) return;
+
+            const input =
+                document.getElementById("letterInput");
+
+            const letter =
+                input.value.toUpperCase();
+
+            input.value = "";
+
+            /* VALIDASI INPUT */
+            if (!letter.match(/^[A-Z]$/)) {
+
+                showModal(
+                    "⚠ Error",
+                    "Masukkan 1 huruf yang valid!",
+                    "⚠",
+                    "error"
+                );
+
+                return;
+            }
+
+            /* VALIDASI HURUF DUPLIKAT */
+            if (guessedLetters.includes(letter)) {
+
+                showModal(
+                    "⚠ Huruf Duplikat",
+                    "Huruf sudah pernah ditebak!",
+                    "🔁",
+                    "error"
+                );
+
+                return;
+            }
+
+            guessedLetters.push(letter);
+
+            let correct = false;
+
+            /* CEK HURUF */
+            for (let i = 0; i < wordArray.length; i++) {
+
+                if (wordArray[i] === letter) {
+
+                    answerArray[i] = letter;
+
+                    correct = true;
+                }
+            }
+
+            /* JIKA SALAH */
+            if (!correct) {
+
+                lives--;
+                wrongAttempts++;
+            }
+
+            /* JIKA BERHASIL MENYELESAIKAN KATA */
+            if (answerArray.join("") === selectedWord) {
+
+                /* HITUNG POIN BERDASARKAN KESALAHAN */
+                let earnedScore =
+                    10 - (wrongAttempts * 2);
+
+                /* MINIMAL 0 */
+                if (earnedScore < 0) {
+
+                    earnedScore = 0;
+                }
+
+                score += earnedScore;
+
+                gameOver = true;
+
+                /* REWARD JIKA 100 POIN */
+                if (score >= 100) {
+
+                    showModal(
+                        "🎁 REWARD TERBUKA!",
+                        `Selamat! Anda mencapai 100 poin dan mendapatkan reward spesial!`,
+                        "👑",
+                        "reward"
+                    );
+
+                    score = 0;
+
+                    rewardClaimed = true;
+
+                    setTimeout(() => {
+
+                        closeModal();
+
+                        startGame();
+
+                    }, 3000);
+
+                } else {
+
+                    showModal(
+                        "🎉 Benar!",
+                        `Jawaban benar: ${selectedWord}
+                    
+Poin didapat: ${earnedScore}`,
+                        "🏆",
+                        "success"
+                    );
+                }
+            }
+
+            /* JIKA NYAWA HABIS */
+            else if (lives <= 0) {
+
+                gameOver = true;
+
+                showModal(
+                    "❌ Game Over",
+                    `Kesempatan habis!
+                
+Jawabannya: ${selectedWord}`,
+                    "💀",
+                    "error"
+                );
+            }
+
+            updateDisplay();
+        }
+
+        function showModal(title, message, emoji, type = "default") {
+
+            document.getElementById("modalTitle").textContent =
+                title;
+
+            document.getElementById("modalMessage").textContent =
+                message;
+
+            document.getElementById("modalEmoji").textContent =
+                emoji;
+
+            const modalContent =
+                document.querySelector(".modal-content");
+
+            if (type === "success") {
+
+                modalContent.style.background =
+                    "lawngreen";
+
+                modalContent.style.color =
+                    "#14532d";
+
+            }
+
+            else if (type === "error") {
+
+                modalContent.style.background =
+                    "#ff4d4d";
+
+                modalContent.style.color =
+                    "white";
+            }
+
+            else if (type === "reward") {
+
+                modalContent.style.background =
+                    "gold";
+
+                modalContent.style.color =
+                    "#4a044e";
+            }
+
+            else {
+
+                modalContent.style.background =
+                    "#f8fafc";
+
+                modalContent.style.color =
+                    "#333";
+            }
+
+            document.getElementById("gameModal").style.display =
+                "flex";
+        }
+
+        function closeModal() {
+
+            document.getElementById("gameModal").style.display =
+                "none";
+        }
+
+        document.getElementById("letterInput")
+            .addEventListener("keypress", function (e) {
+
+                if (e.key === "Enter") {
+
+                    guessLetter();
+                }
+            });
+
+        startGame();
+    </script>
+
+</body>
+
+</html>
