@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Galeri Desa</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef5ff, #dbeafe);
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+
+        .custom-nav {
+            background: rgba(15, 23, 42, 0.35);
+            backdrop-filter: blur(16px);
+            padding: 14px 0;
+            transition: .4s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white !important;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: .5px;
+        }
+
+        .navbar-brand img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 600;
+            margin-left: 14px;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0%;
+            height: 3px;
+            border-radius: 20px;
+            background: white;
+            transition: .3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            padding: 12px 18px;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        /* SECTION */
+
+        .galeri-section {
+            padding: 140px 0 100px;
+        }
+
+        /* TITLE */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title span,
+        .video-title span {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: #2563eb;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2,
+        .video-title h2 {
+            font-size: 55px;
+            font-weight: 800;
+            color: #081f4d;
+            margin-bottom: 15px;
+        }
+
+        .section-title p,
+        .video-title p {
+            color: #64748b;
+            font-size: 18px;
+        }
+
+        /* GRID */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* CARD */
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: .4s;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* OVERLAY */
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(8, 31, 77, .95),
+                    rgba(37, 99, 235, .2));
+
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            padding: 30px;
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h3 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        /* BUTTON */
+
+        .gallery-btn {
+            width: max-content;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .gallery-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* VIDEO SECTION */
+
+        .video-section {
+            margin-top: 100px;
+        }
+
+        .video-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* VIDEO GRID */
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* VIDEO CARD */
+
+        .video-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 35px 30px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: .4s ease;
+        }
+
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.12);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(37, 99, 235, 0.18);
+        }
+
+        .video-info {
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-info h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #081f4d;
+            margin-bottom: 12px;
+        }
+
+        .video-info p {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* VIDEO BUTTON */
+
+        .video-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 600;
+            transition: .35s ease;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .video-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            color: white;
+            box-shadow: 0 18px 30px rgba(37, 99, 235, 0.35);
+        }
+
+        /* MODAL */
+
+        .gallery-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+
+            display: none;
+            justify-content: center;
+            align-items: center;
+
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .gallery-modal-box {
+            width: 100%;
+            max-width: 850px;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            animation: showModal .4s ease;
+        }
+
+        @keyframes showModal {
+
+            from {
+                transform: scale(.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+        .gallery-modal-box img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+        }
+
+        .gallery-modal-content {
+            padding: 30px;
+        }
+
+        .gallery-modal-content h2 {
+            font-size: 36px;
+            color: #081f4d;
+            margin-bottom: 15px;
+        }
+
+        .gallery-modal-content p {
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .close-gallery {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+
+            font-size: 42px;
+            color: white;
+            cursor: pointer;
+            z-index: 99;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:992px) {
+
+            .section-title h2,
+            .video-title h2 {
+                font-size: 42px;
+            }
+
+        }
+
+        @media(max-width:768px) {
+
+            .custom-nav {
+                padding: 12px 0;
+            }
+
+            .navbar-brand {
+                font-size: 16px;
+            }
+
+            .navbar-brand img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .section-title h2,
+            .video-title h2 {
+                font-size: 34px;
+            }
+
+            .gallery-modal-box img {
+                height: 250px;
+            }
+
+            .video-card {
+                padding: 28px 24px;
+            }
+
+            .video-info h3 {
+                font-size: 24px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav fixed-top">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="index.html">
+
+                <img src="fotojp/logojp.png" alt="Logo Desa">
+
+                <span>DESA JEBENGPLAMPITAN</span>
+
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+
+                            Profil Desa
+
+                        </a>
+
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" href="tentang.html">Tentang Desa</a></li>
+                            <li><a class="dropdown-item" href="sejarah.html">Sejarah Desa</a></li>
+                            <li><a class="dropdown-item" href="visimisi.html">Visi & Misi</a></li>
+                            <li><a class="dropdown-item" href="peta.html">Peta Desa</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="organisasi.html">Organisasi</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="statistik.html">Statistik</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="umkm.html">UMKM</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="galeri.html">Galeri</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Pengaduan</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- GALERI -->
+
+    <section class="galeri-section">
+
+        <div class="container">
+
+            <!-- TITLE -->
+
+            <div class="section-title" data-aos="fade-up">
+
+                <span>GALERI DESA</span>
+
+                <h2>Dokumentasi Kegiatan Desa</h2>
+
+                <p>
+                    Foto dan video kegiatan masyarakat Desa Jebengplampitan
+                </p>
+
+            </div>
+
+            <!-- GALLERY GRID -->
+
+            <div class="gallery-grid">
+
+                <!-- FOTO 1 -->
+
+                <div class="gallery-card" data-title="GUNUNG KARANG"
+                    data-desc="Gunung Karang merupakan salah satu potensi wisata alam unik yang terletak di Dusun Kenanga, Desa Jebengplampitan, Kecamatan Sukoharjo, Kabupaten Wonosobo."
+                    data-img="fotojp/gun.jpg" data-aos="zoom-in">
+
+                    <img src="fotojp/gun.jpg" alt="Gunung Karang">
+
+                    <div class="gallery-overlay">
+
+                        <h3>GUNUNG KARANG</h3>
+
+                        <button class="gallery-btn">
+                            Lihat Detail
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- FOTO 2 -->
+
+                <div class="gallery-card" data-title="PELEPASAN HAJI"
+                    data-desc="Kegiatan pelepasan pemberangkatan calon jamaah haji warga Desa Jebengplampitan."
+                    data-img="fotojp/haji.jpeg" data-aos="zoom-in" data-aos-delay="100">
+
+                    <img src="fotojp/haji.jpeg" alt="Pelepasan Haji">
+
+                    <div class="gallery-overlay">
+
+                        <h3>PELEPASAN HAJI</h3>
+
+                        <button class="gallery-btn">
+                            Lihat Detail
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- FOTO 3 -->
+
+                <div class="gallery-card" data-title="MEMBAJAK SAWAH PAKAI KEBO"
+                    data-desc="Tradisi pertanian menggunakan kerbau sebagai tenaga penggerak tradisional untuk membajak sawah."
+                    data-img="fotojp/kebo.JPG" data-aos="zoom-in" data-aos-delay="200">
+
+                    <img src="fotojp/kebo.JPG" alt="Membajak Sawah">
+
+                    <div class="gallery-overlay">
+
+                        <h3>MEMBAJAK SAWAH</h3>
+
+                        <button class="gallery-btn">
+                            Lihat Detail
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- FOTO 4 -->
+
+                <div class="gallery-card" data-title="SMP N 2 SUKOHARJO"
+                    data-desc="Sekolah menengah pertama negeri yang berada di Kecamatan Sukoharjo."
+                    data-img="fotojp/smp.webp" data-aos="zoom-in">
+
+                    <img src="fotojp/smp.webp" alt="SMP">
+
+                    <div class="gallery-overlay">
+
+                        <h3>SMP N 2 SUKOHARJO</h3>
+
+                        <button class="gallery-btn">
+                            Lihat Detail
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- FOTO 5 -->
+
+                <div class="gallery-card" data-title="PONDOK PESANTREN MADINATUSSALAM"
+                    data-desc="Salah satu pondok pesantren yang berada di Desa Jebengplampitan."
+                    data-img="fotojp/pondok.jpeg" data-aos="zoom-in">
+
+                    <img src="fotojp/pondok.jpeg" alt="Pondok">
+
+                    <div class="gallery-overlay">
+
+                        <h3>PONDOK PESANTREN</h3>
+
+                        <button class="gallery-btn">
+                            Lihat Detail
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- FOTO 6 -->
+
+                <div class="gallery-card" data-title="SD JEBENGPLAMPITAN"
+                    data-desc="Sekolah dasar yang berada di Dukuh Kutawuluh Desa Jebengplampitan."
+                    data-img="fotojp/sd.webp" data-aos="zoom-in">
+
+                    <img src="fotojp/sd.webp" alt="SD">
+
+                    <div class="gallery-overlay">
+
+                        <h3>SD JEBENGPLAMPITAN</h3>
+
+                        <button class="gallery-btn">
+                            Lihat Detail
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- VIDEO -->
+
+            <div class="video-section">
+
+                <div class="video-title" data-aos="fade-up">
+
+                    <h2>Video Dokumentasi Desa</h2>
+
+                    <p>
+                        Klik tombol untuk menonton video dokumentasi desa
+                    </p>
+
+                </div>
+
+                <div class="video-grid">
+
+                    <!-- VIDEO 1 -->
+
+                    <div class="video-card" data-aos="zoom-in">
+
+                        <div class="video-info">
+                            <h3>Video Desa 1</h3>
+                            <p>Dokumentasi kegiatan masyarakat desa Jebengplampitan ketika Merayakan Hari Ulang Tahun Republik Indonesia</p>
+
+                            <a href="https://drive.google.com/file/d/1vfwCrsoY81S8r7jvtjJRppM14ip2Y-7w/view?usp=sharing"
+                                target="_blank" class="video-btn">
+                                Tonton Video
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- VIDEO 2 -->
+
+                    <div class="video-card" data-aos="zoom-in">
+
+                        <div class="video-info">
+                            <h3>Video Desa 2</h3>
+                            <p>Kondisi Kali Tulis ketika lagi banjir dan sebelum jembatannya diperbaiki</p>
+
+                            <a href="https://drive.google.com/file/d/1I8pRxRSdVQqH4vXy-nxGamxaEH40MT8A/view?usp=sharing"
+                                target="_blank" class="video-btn">
+                                Tonton Video
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- VIDEO 3 -->
+
+                    <div class="video-card" data-aos="zoom-in">
+
+                        <div class="video-info">
+                            <h3>Video Desa 3</h3>
+                            <p>Pak Ganjar ke Desa Jebengplampitan untuk mengurus jembatan yang sangat menyedihkan karena cuma terbuat dari bambu</p>
+
+                            <a href="https://drive.google.com/file/d/1TLna0Sa-zHmPjpwPe1V7AG08mln4weuR/view?usp=sharing"
+                                target="_blank" class="video-btn">
+                                Tonton Video
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- VIDEO 4 -->
+
+                    <div class="video-card" data-aos="zoom-in">
+
+                        <div class="video-info">
+                            <h3>Video Desa 4</h3>
+                            <p>Jembatan dan akses desa Jebengplampitan dan Desa Larangan</p>
+
+                            <a href="https://drive.google.com/file/d/1qF2SICXHYqITimS4QrmM4erniLaXIH4K/view?usp=sharing"
+                                target="_blank" class="video-btn">
+                                Tonton Video
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- VIDEO 5 -->
+
+                    <div class="video-card" data-aos="zoom-in">
+
+                        <div class="video-info">
+                            <h3>Video Desa 5</h3>
+                            <p>Kegiatan masyarakat desa Jebengplampitan hasil dokumentasi dari KKN UMP</p>
+
+                            <a href="https://drive.google.com/file/d/11kE4gq8L4xt4sc57O2Zx9Aukjh-Y5ESt/view?usp=sharing"
+                                target="_blank" class="video-btn">
+                                Tonton Video
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- VIDEO 6 -->
+
+                    <div class="video-card" data-aos="zoom-in">
+
+                        <div class="video-info">
+                            <h3>Video Desa 6</h3>
+                            <p>Jembatan Gantung Desa Jebengplampitan yang menghubugkan Antara Kabupaten Wonosobo dan Kabupaten Banjarnegara</p>
+
+                            <a href="https://drive.google.com/file/d/1vGkwdT2_UvNKCh5Ykdsq9bYHbBX9erbz/view?usp=sharing"
+                                target="_blank" class="video-btn">
+                                Tonton Video
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- MODAL -->
+
+            <div class="gallery-modal" id="galleryModal">
+
+                <div class="gallery-modal-box">
+
+                    <span class="close-gallery" id="closeGallery">
+                        &times;
+                    </span>
+
+                    <img id="galleryModalImg" src="">
+
+                    <div class="gallery-modal-content">
+
+                        <h2 id="galleryTitle"></h2>
+
+                        <p id="galleryDesc"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- AOS -->
+            <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+            <!-- BOOTSTRAP -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+            <script>
+
+                // AOS
+                AOS.init({
+                    duration: 1000,
+                    once: true
+                });
+
+                // NAVBAR SCROLL
+                window.addEventListener("scroll", function () {
+
+                    const navbar = document.querySelector(".custom-nav");
+
+                    if (window.scrollY > 50) {
+
+                        navbar.style.background = "rgba(15,23,42,0.88)";
+                        navbar.style.padding = "10px 0";
+
+                    } else {
+
+                        navbar.style.background = "rgba(15,23,42,0.35)";
+                        navbar.style.padding = "14px 0";
+
+                    }
+
+                });
+
+                // MODAL GALERI
+                const galleryCards = document.querySelectorAll(".gallery-card");
+
+                const galleryModal = document.getElementById("galleryModal");
+                const galleryTitle = document.getElementById("galleryTitle");
+                const galleryDesc = document.getElementById("galleryDesc");
+                const galleryImg = document.getElementById("galleryModalImg");
+                const closeGallery = document.getElementById("closeGallery");
+
+                galleryCards.forEach(card => {
+
+                    card.addEventListener("click", () => {
+
+                        const title = card.dataset.title;
+                        const desc = card.dataset.desc;
+                        const img = card.dataset.img;
+
+                        galleryTitle.textContent = title;
+                        galleryDesc.textContent = desc;
+                        galleryImg.src = img;
+
+                        galleryModal.style.display = "flex";
+
+                    });
+
+                });
+
+                // CLOSE MODAL BUTTON
+                closeGallery.addEventListener("click", () => {
+
+                    galleryModal.style.display = "none";
+
+                });
+
+                // CLOSE MODAL OUTSIDE
+                window.addEventListener("click", (e) => {
+
+                    if (e.target === galleryModal) {
+
+                        galleryModal.style.display = "none";
+
+                    }
+
+                });
+
+            </script>
+
+</body>
+
+</html>
