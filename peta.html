@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Peta Desa Jebengplampitan</title>
+
+  <!-- BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:
+      linear-gradient(rgba(7,15,35,0.88), rgba(7,15,35,0.92)),
+      url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600');
+
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* NAVBAR */
+
+    .custom-nav{
+      background:rgba(15,23,42,0.75);
+      backdrop-filter:blur(14px);
+
+      padding:14px 0;
+
+      transition:0.4s;
+    }
+
+    .navbar-brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      color:white !important;
+
+      font-weight:800;
+      font-size:21px;
+    }
+
+    .navbar-brand img{
+      width:45px;
+      height:45px;
+      object-fit:contain;
+    }
+
+    .nav-link{
+      color:white !important;
+      margin-left:14px;
+
+      font-weight:500;
+
+      position:relative;
+    }
+
+    .nav-link::after{
+      content:"";
+
+      position:absolute;
+
+      left:0;
+      bottom:-5px;
+
+      width:0%;
+      height:2px;
+
+      background:#38bdf8;
+
+      transition:0.3s;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after{
+      width:100%;
+    }
+
+    .dropdown-menu{
+      background:#0f172a;
+
+      border:none;
+
+      border-radius:18px;
+
+      overflow:hidden;
+    }
+
+    .dropdown-item{
+      color:white;
+      padding:12px 18px;
+    }
+
+    .dropdown-item:hover{
+      background:#2563eb;
+      color:white;
+    }
+
+    /* HERO */
+
+    .hero-section{
+      min-height:70vh;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      text-align:center;
+
+      padding:150px 20px 90px;
+
+      position:relative;
+    }
+
+    .hero-section::before{
+      content:"";
+
+      position:absolute;
+      inset:0;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(37,99,235,0.45)),
+      url('fotojp/jp.webp');
+
+      background-size:cover;
+      background-position:center;
+
+      z-index:-1;
+    }
+
+    .hero-content span{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+
+      padding:12px 22px;
+
+      border-radius:40px;
+
+      background:rgba(255,255,255,0.1);
+
+      color:#bfdbfe;
+
+      font-size:14px;
+
+      margin-bottom:22px;
+
+      backdrop-filter:blur(10px);
+    }
+
+    .hero-content h1{
+      font-size:65px;
+      font-weight:800;
+
+      margin-bottom:20px;
+
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .hero-content p{
+      max-width:850px;
+      margin:auto;
+
+      line-height:2;
+
+      color:#dbeafe;
+
+      font-size:17px;
+    }
+
+    /* SECTION */
+
+    .section-padding{
+      padding:90px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:45px;
+      font-weight:800;
+
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      max-width:700px;
+      margin:auto;
+
+      color:#cbd5e1;
+
+      line-height:1.8;
+    }
+
+    /* MAP CARD */
+
+    .map-card{
+      background:rgba(255,255,255,0.08);
+
+      border:1px solid rgba(255,255,255,0.12);
+
+      border-radius:30px;
+
+      overflow:hidden;
+
+      backdrop-filter:blur(12px);
+
+      box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    }
+
+    .map-info{
+      padding:45px;
+    }
+
+    .map-info h2{
+      font-size:38px;
+      font-weight:800;
+
+      margin-bottom:20px;
+    }
+
+    .map-info p{
+      color:#dbeafe;
+
+      line-height:1.9;
+
+      margin-bottom:18px;
+    }
+
+    .info-item{
+      display:flex;
+      gap:15px;
+
+      margin-bottom:22px;
+    }
+
+    .info-icon{
+      width:55px;
+      height:55px;
+
+      border-radius:18px;
+
+      background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-size:22px;
+
+      flex-shrink:0;
+
+      box-shadow:0 10px 20px rgba(37,99,235,0.35);
+    }
+
+    .info-text h5{
+      font-size:18px;
+      font-weight:700;
+
+      margin-bottom:5px;
+    }
+
+    .info-text span{
+      color:#cbd5e1;
+
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .map-frame{
+      height:100%;
+      min-height:550px;
+    }
+
+    .map-frame iframe{
+      width:100%;
+      height:100%;
+      border:none;
+    }
+
+    /* BUTTON */
+
+    .map-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+
+      margin-top:20px;
+
+      padding:15px 28px;
+
+      border-radius:50px;
+
+      text-decoration:none;
+
+      background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+      color:white;
+
+      font-weight:600;
+
+      transition:0.3s;
+
+      box-shadow:0 10px 25px rgba(37,99,235,0.35);
+    }
+
+    .map-btn:hover{
+      transform:translateY(-5px);
+      color:white;
+    }
+
+    /* EXTRA */
+
+    .extra-section{
+      margin-top:70px;
+    }
+
+    .extra-card{
+      background:rgba(255,255,255,0.08);
+
+      border:1px solid rgba(255,255,255,0.12);
+
+      border-radius:25px;
+
+      padding:35px;
+
+      text-align:center;
+
+      backdrop-filter:blur(12px);
+
+      transition:0.4s;
+
+      height:100%;
+    }
+
+    .extra-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .extra-card i{
+      width:80px;
+      height:80px;
+
+      border-radius:50%;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      margin:auto auto 20px;
+
+      background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+      font-size:30px;
+
+      box-shadow:0 10px 25px rgba(37,99,235,0.35);
+    }
+
+    .extra-card h4{
+      font-weight:700;
+
+      margin-bottom:15px;
+    }
+
+    .extra-card p{
+      color:#dbeafe;
+
+      line-height:1.8;
+
+      font-size:15px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      margin-top:80px;
+
+      text-align:center;
+
+      padding:30px 20px;
+
+      background:rgba(0,0,0,0.2);
+
+      color:#cbd5e1;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:992px){
+
+      .hero-content h1{
+        font-size:48px;
+      }
+
+      .map-info{
+        padding:35px;
+      }
+
+      .map-info h2{
+        font-size:32px;
+      }
+
+      .map-frame{
+        min-height:400px;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .hero-content h1{
+        font-size:38px;
+      }
+
+      .hero-content p{
+        font-size:15px;
+      }
+
+      .section-title h2{
+        font-size:34px;
+      }
+
+      .map-info{
+        padding:28px 24px;
+      }
+
+      .navbar-brand span{
+        font-size:15px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark custom-nav fixed-top">
+
+    <div class="container">
+
+      <a class="navbar-brand" href="index.html">
+
+        <img src="fotojp/logojp.png" alt="Logo Desa">
+
+        <span>DESA JEBENGPLAMPITAN</span>
+
+      </a>
+
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav">
+
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+      <div class="collapse navbar-collapse"
+           id="navbarNav">
+
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link"
+               href="index.html">
+              Beranda
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle active"
+               href="#"
+               role="button"
+               data-bs-toggle="dropdown">
+
+              Profil Desa
+
+            </a>
+
+            <ul class="dropdown-menu">
+
+              <li>
+                <a class="dropdown-item"
+                   href="tentang.html">
+                  Tentang Desa
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item"
+                   href="sejarah.html">
+                  Sejarah Desa
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item"
+                   href="visimisi.html">
+                  Visi & Misi
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item active"
+                   href="peta.html">
+                  Peta Desa
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"
+               href="organisasi.html">
+              Organisasi
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"
+               href="statistik.html">
+              Statistik
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"
+               href="umkm.html">
+              UMKM
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"
+               href="galeri.html">
+              Galeri
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"
+               href="kontak.html">
+              Pengaduan
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero-section">
+
+    <div class="hero-content"
+         data-aos="fade-up">
+
+      <span>
+
+        <i class="fa-solid fa-map-location-dot"></i>
+
+        LOKASI DESA
+
+      </span>
+
+      <h1>Peta Desa Jebengplampitan</h1>
+
+      <p>
+        Informasi lokasi Kantor Desa Jebengplampitan lengkap dengan alamat,
+        kontak, dan akses Google Maps untuk memudahkan masyarakat
+        maupun pengunjung menemukan lokasi desa.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- MAP -->
+
+  <section class="section-padding">
+
+    <div class="section-title"
+         data-aos="fade-up">
+
+      <h2>Lokasi & Informasi Desa</h2>
+
+      <p>
+        Informasi alamat, wilayah, email, serta akses menuju Kantor Desa Jebengplampitan
+      </p>
+
+    </div>
+
+    <div class="map-card">
+
+      <div class="row g-0">
+
+        <!-- INFO -->
+
+        <div class="col-lg-5">
+
+          <div class="map-info"
+               data-aos="fade-right">
+
+            <h2>Lokasi Desa</h2>
+
+            <p>
+              Kantor Desa Jebengplampitan berada di wilayah Kecamatan Sukoharjo,
+              Kabupaten Wonosobo dan dapat diakses dengan mudah
+              menggunakan Google Maps.
+            </p>
+
+            <div class="info-item">
+
+              <div class="info-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+
+              <div class="info-text">
+
+                <h5>Alamat</h5>
+
+                <span>
+                  Jl. Gunung Karang No.2 Desa Jebengplampitan
+                  RT.001 RW.001
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="info-item">
+
+              <div class="info-icon">
+                <i class="fa-solid fa-earth-asia"></i>
+              </div>
+
+              <div class="info-text">
+
+                <h5>Wilayah</h5>
+
+                <span>
+                  Kecamatan Sukoharjo,
+                  Kabupaten Wonosobo
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="info-item">
+
+              <div class="info-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+
+              <div class="info-text">
+
+                <h5>Email</h5>
+
+                <span>
+                  jebengplampitan.wonosobokab@gmail.com
+                </span>
+
+              </div>
+
+            </div>
+
+            <a href="https://maps.google.com"
+               target="_blank"
+               class="map-btn">
+
+              <i class="fa-solid fa-map"></i>
+
+              Buka Google Maps
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- MAP -->
+
+        <div class="col-lg-7">
+
+          <div class="map-frame"
+               data-aos="fade-left">
+
+            <iframe
+              src="https://www.google.com/maps?q=Jl.Gunung+Karang+No.2+Desa+Jebengplampitan+RT.001+RW.001+Kec.+Sukoharjo+Kab.+Wonosobo&output=embed"
+              loading="lazy"
+              allowfullscreen="">
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- EXTRA -->
+
+    <div class="extra-section">
+
+      <div class="row g-4">
+
+        <div class="col-md-4"
+             data-aos="zoom-in">
+
+          <div class="extra-card">
+
+            <i class="fa-solid fa-road"></i>
+
+            <h4>Akses Mudah</h4>
+
+            <p>
+              Lokasi desa dapat dijangkau dengan kendaraan roda dua
+              maupun roda empat dengan akses jalan yang baik.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4"
+             data-aos="zoom-in"
+             data-aos-delay="100">
+
+          <div class="extra-card">
+
+            <i class="fa-solid fa-building"></i>
+
+            <h4>Kantor Pelayanan</h4>
+
+            <p>
+              Kantor desa melayani administrasi masyarakat
+              serta berbagai kebutuhan pelayanan publik desa.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4"
+             data-aos="zoom-in"
+             data-aos-delay="200">
+
+          <div class="extra-card">
+
+            <i class="fa-solid fa-users"></i>
+
+            <h4>Masyarakat Aktif</h4>
+
+            <p>
+              Desa Jebengplampitan memiliki masyarakat yang aktif,
+              ramah, dan mendukung pembangunan desa.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Desa Jebengplampitan — Website Resmi Desa
+
+  </footer>
+
+  <!-- JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+
+    AOS.init({
+      duration:1000,
+      once:true
+    });
+
+  </script>
+
+</body>
+
+</html>
