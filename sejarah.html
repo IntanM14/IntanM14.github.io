@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sejarah Desa Jebengplampitan</title>
+
+  <!-- BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- GOOGLE FONT -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      overflow-x:hidden;
+      color:#1e293b;
+
+      background:
+      linear-gradient(
+        rgba(255,255,255,0.88),
+        rgba(255,255,255,0.88)
+      ),
+      url("fotojp/jp.webp");
+
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+    }
+
+    /* NAVBAR */
+
+    .custom-nav{
+      background:rgba(15,23,42,0.75);
+      backdrop-filter:blur(15px);
+      padding:15px 0;
+      transition:0.4s;
+      box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .navbar-brand{
+      font-size:22px;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:white !important;
+    }
+
+    .navbar-brand img{
+      width:45px;
+      height:45px;
+      object-fit:contain;
+    }
+
+    .nav-link{
+      color:white !important;
+      margin-left:15px;
+      font-weight:500;
+      position:relative;
+    }
+
+    .nav-link::after{
+      content:'';
+      position:absolute;
+      width:0%;
+      height:2px;
+      background:#38bdf8;
+      left:0;
+      bottom:-5px;
+      transition:0.3s;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after{
+      width:100%;
+    }
+
+    .dropdown-menu{
+      background:#0f172a;
+      border:none;
+      border-radius:18px;
+      overflow:hidden;
+    }
+
+    .dropdown-item{
+      color:white;
+      padding:12px 20px;
+    }
+
+    .dropdown-item:hover{
+      background:#2563eb;
+      color:white;
+    }
+
+    /* HERO */
+
+    .hero-sejarah{
+      position:relative;
+      padding:180px 0 140px;
+      overflow:hidden;
+
+      background:
+      linear-gradient(
+        rgba(0,0,0,0.68),
+        rgba(37,99,235,0.55)
+      ),
+      url("fotojp/karang.webp");
+
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+
+      text-align:center;
+      color:white;
+    }
+
+    .hero-sejarah::before{
+      content:'';
+      position:absolute;
+      width:450px;
+      height:450px;
+      background:rgba(255,255,255,0.05);
+      border-radius:50%;
+      top:-120px;
+      left:-120px;
+      filter:blur(10px);
+    }
+
+    .hero-sejarah::after{
+      content:'';
+      position:absolute;
+      width:400px;
+      height:400px;
+      background:rgba(56,189,248,0.08);
+      border-radius:50%;
+      bottom:-150px;
+      right:-120px;
+      filter:blur(10px);
+    }
+
+    .hero-sejarah h1{
+      font-size:70px;
+      font-weight:800;
+      margin-bottom:25px;
+      text-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero-sejarah p{
+      font-size:19px;
+      max-width:850px;
+      margin:auto;
+      line-height:2;
+      color:#e2e8f0;
+    }
+
+    .hero-badge{
+      display:inline-block;
+      padding:12px 24px;
+      border-radius:50px;
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(10px);
+      margin-bottom:30px;
+      color:#bfdbfe;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .hero-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+
+      margin-top:40px;
+      padding:16px 34px;
+
+      border-radius:50px;
+
+      background:
+      linear-gradient(135deg,#2563eb,#38bdf8);
+
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+
+      transition:0.4s;
+
+      box-shadow:
+      0 12px 30px rgba(37,99,235,0.35);
+    }
+
+    .hero-btn:hover{
+      transform:translateY(-6px) scale(1.03);
+      color:white;
+    }
+
+    /* SECTION */
+
+    .section-padding{
+      padding:110px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title span{
+      display:inline-block;
+
+      padding:10px 22px;
+
+      border-radius:40px;
+
+      background:
+      linear-gradient(135deg,#2563eb,#38bdf8);
+
+      color:white;
+
+      font-size:14px;
+      font-weight:600;
+
+      margin-bottom:20px;
+
+      box-shadow:
+      0 10px 25px rgba(37,99,235,0.25);
+    }
+
+    .section-title h2{
+      font-size:50px;
+      font-weight:800;
+      color:#0f172a;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#64748b;
+      font-size:18px;
+      max-width:750px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    /* CARD */
+
+    .history-card{
+      background:rgba(255,255,255,0.9);
+
+      border-radius:35px;
+
+      padding:45px;
+
+      backdrop-filter:blur(14px);
+
+      border:1px solid rgba(255,255,255,0.4);
+
+      box-shadow:
+      0 15px 40px rgba(0,0,0,0.08);
+
+      transition:0.4s;
+    }
+
+    .history-card:hover{
+      transform:translateY(-10px);
+      box-shadow:
+      0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .history-card h3{
+      font-size:36px;
+      font-weight:800;
+      margin-bottom:25px;
+      color:#0f172a;
+    }
+
+    .history-card p{
+      line-height:2;
+      color:#475569;
+      margin-bottom:20px;
+      text-align:justify;
+    }
+
+    .history-img{
+      width:100%;
+      border-radius:35px;
+
+      box-shadow:
+      0 15px 40px rgba(0,0,0,0.12);
+
+      transition:0.5s;
+    }
+
+    .history-img:hover{
+      transform:scale(1.03);
+    }
+
+    /* TIMELINE SECTION */
+
+    .bg-light{
+      position:relative;
+
+      background:
+      linear-gradient(
+        rgba(255,255,255,0.93),
+        rgba(255,255,255,0.93)
+      ),
+      url("fotojp/sawah.jpg");
+
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+    }
+
+    .timeline{
+      position:relative;
+      margin-top:80px;
+    }
+
+    .timeline::before{
+      content:"";
+      position:absolute;
+
+      left:50%;
+      top:0;
+
+      width:5px;
+      height:100%;
+
+      background:
+      linear-gradient(
+        to bottom,
+        #2563eb,
+        #38bdf8
+      );
+
+      transform:translateX(-50%);
+      border-radius:20px;
+    }
+
+    .timeline-item{
+      position:relative;
+      width:50%;
+      padding:20px 45px;
+      margin-bottom:60px;
+    }
+
+    .timeline-item.left{
+      left:0;
+    }
+
+    .timeline-item.right{
+      left:50%;
+    }
+
+    .timeline-dot{
+      position:absolute;
+      top:45px;
+
+      width:22px;
+      height:22px;
+
+      border-radius:50%;
+
+      background:#2563eb;
+
+      border:5px solid white;
+
+      box-shadow:
+      0 0 0 8px rgba(37,99,235,0.2);
+    }
+
+    .timeline-item.left .timeline-dot{
+      right:-11px;
+    }
+
+    .timeline-item.right .timeline-dot{
+      left:-11px;
+    }
+
+    .timeline-content{
+      background:rgba(255,255,255,0.95);
+
+      padding:32px;
+
+      border-radius:30px;
+
+      backdrop-filter:blur(12px);
+
+      border:1px solid rgba(255,255,255,0.5);
+
+      box-shadow:
+      0 15px 40px rgba(0,0,0,0.08);
+
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .timeline-content::before{
+      content:'';
+      position:absolute;
+      width:140px;
+      height:140px;
+      background:rgba(37,99,235,0.08);
+      border-radius:50%;
+      top:-50px;
+      right:-50px;
+    }
+
+    .timeline-content:hover{
+      transform:translateY(-10px);
+      box-shadow:
+      0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .timeline-content h4{
+      font-size:25px;
+      font-weight:800;
+      color:#2563eb;
+      margin-bottom:18px;
+      text-align:center;
+    }
+
+    .timeline-content p{
+      color:#475569;
+      line-height:2;
+      text-align:justify;
+      position:relative;
+      z-index:2;
+    }
+
+    .timeline-img{
+      width:100%;
+      height:240px;
+
+      object-fit:cover;
+
+      border-radius:22px;
+
+      margin-bottom:22px;
+
+      cursor:pointer;
+
+      box-shadow:
+      0 10px 25px rgba(0,0,0,0.12);
+
+      transition:0.4s;
+    }
+
+    .timeline-img:hover{
+      transform:scale(1.04);
+      box-shadow:
+      0 15px 35px rgba(0,0,0,0.18);
+    }
+
+    /* MODAL */
+
+    .modal-content{
+      background:transparent;
+      border:none;
+    }
+
+    .modal-img{
+      width:100%;
+      max-height:85vh;
+      object-fit:contain;
+      border-radius:30px;
+      animation:zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn{
+
+      from{
+        transform:scale(0.8);
+        opacity:0;
+      }
+
+      to{
+        transform:scale(1);
+        opacity:1;
+      }
+
+    }
+
+    /* FLOAT BUTTON */
+
+    .scroll-top{
+      position:fixed;
+      right:25px;
+      bottom:25px;
+
+      width:55px;
+      height:55px;
+
+      border-radius:50%;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background:
+      linear-gradient(135deg,#2563eb,#38bdf8);
+
+      color:white;
+
+      text-decoration:none;
+      font-size:20px;
+
+      box-shadow:
+      0 10px 25px rgba(37,99,235,0.35);
+
+      z-index:999;
+
+      transition:0.4s;
+    }
+
+    .scroll-top:hover{
+      transform:translateY(-6px) scale(1.05);
+      color:white;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    .footer p{
+      margin:0;
+      color:#cbd5e1;
+      letter-spacing:0.5px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:992px){
+
+      .hero-sejarah h1{
+        font-size:52px;
+      }
+
+      .timeline::before{
+        left:20px;
+      }
+
+      .timeline-item{
+        width:100%;
+        padding-left:70px;
+        padding-right:20px;
+      }
+
+      .timeline-item.left,
+      .timeline-item.right{
+        left:0;
+      }
+
+      .timeline-dot{
+        left:10px !important;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .hero-sejarah{
+        padding:160px 20px 120px;
+      }
+
+      .hero-sejarah h1{
+        font-size:40px;
+      }
+
+      .hero-sejarah p{
+        font-size:16px;
+      }
+
+      .section-title h2{
+        font-size:34px;
+      }
+
+      .history-card{
+        padding:30px;
+      }
+
+      .timeline-content{
+        padding:25px;
+      }
+
+      .timeline-content h4{
+        font-size:21px;
+      }
+
+      .timeline-img{
+        height:210px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark custom-nav fixed-top">
+
+    <div class="container">
+
+      <a class="navbar-brand" href="beranda.html">
+
+        <img src="fotojp/logojp.png" alt="Logo Desa">
+
+        <span>DESA JEBENGPLAMPITAN</span>
+
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav">
+
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="beranda.html">Beranda</a>
+          </li>
+
+          <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle active" href="#"
+              role="button" data-bs-toggle="dropdown">
+
+              Profil Desa
+
+            </a>
+
+            <ul class="dropdown-menu">
+
+              <li>
+                <a class="dropdown-item" href="tentang.html">
+                  Tentang Desa
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item active" href="sejarah.html">
+                  Sejarah Desa
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" href="visimisi.html">
+                  Visi & Misi
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" href="peta.html">
+                  Peta Desa
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="organisasi.html">
+              Organisasi
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="statistik.html">
+              Statistik
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="umkm.html">
+              UMKM
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="galeri.html">
+              Galeri
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="kontak.html">
+              Pengaduan
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero-sejarah">
+
+    <div class="container" data-aos="fade-up">
+
+      <div class="hero-badge">
+        <i class="fa-solid fa-book-open"></i>
+        SEJARAH DESA
+      </div>
+
+      <h1>Sejarah Desa Jebengplampitan</h1>
+
+      <p>
+        Mengenal perjalanan panjang Desa Jebengplampitan dari masa awal
+        pembentukan hingga menjadi desa yang terus berkembang, maju,
+        dan tetap menjaga budaya tradisional masyarakat.
+      </p>
+
+      <a href="#sejarah" class="hero-btn">
+
+        <i class="fa-solid fa-arrow-down"></i>
+        Jelajahi Sejarah
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- SEJARAH -->
+
+  <section id="sejarah" class="section-padding">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+
+        <span>
+          <i class="fa-solid fa-book-open"></i>
+          SEJARAH DESA
+        </span>
+
+        <h2>Asal-Usul Desa</h2>
+
+        <p>
+          Cerita sejarah yang berkembang secara turun-temurun di masyarakat
+          Desa Jebengplampitan
+        </p>
+
+      </div>
+
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-6" data-aos="fade-right">
+
+          <img src="fotojp/desa.png"
+            class="history-img"><br>
+
+
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-left">
+
+          <div class="history-card">
+
+            <h3>Awal Berdirinya Desa</h3>
+
+            <p>
+              Desa Jebengplampitan diperkirakan berdiri pada masa sejarah islam di Jawa dimana menurut serita dari mulut
+              ke mulut desa Jebengplampitan berasal dari Kata Jabang ( Orang Asing ) dimana orang tersebut adalah murid
+              dari Sunan kali Jaga Tunggal seperguruan dengan Cakra jaya atau Sunan Geseng pada tahun yang tidak
+              diketahui sejarahnya.
+            </p>
+
+            <p>
+              Diperkirakan berdiri pada masa abad 16 sehingga desa Jebengplampitan ini lahir sebelum Indonesia merdeka
+              pada tahun 1945.
+            </p>
+
+            <p>
+              Hingga saat ini pemerintah desa Jebengplampitan belum menemukan dokumen dan bukti sejarah yang menyebutkan
+              tahun berdirinya desa Jebengplampitan. Sejarah desa hanya bisa dirunut berdasarkan cerita lisan yang
+              berkembang secara turun menurun di tengah masyarakat.
+            </p>
+
+            <p>
+              Menurut riwayat yang berkembang di masyarakat, pendiri desa adalah sosok pengembara yang berpindah-pindah
+              dan akhirnya menetap di wilayah yang sekarang menjadi Desa Jebengplampitan.
+            </p>
+
+            <p>
+              Penulisan sejarah ini berdasarkan cerita turun-temurun dari para tokoh masyarakat dan perangkat desa
+              terdahulu.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TIMELINE -->
+
+  <section class="section-padding bg-light">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+
+        <span>
+          <i class="fa-solid fa-landmark"></i>
+          PEMIMPIN DESA
+        </span>
+
+        <h2>Perjalanan Kepemimpinan Desa</h2>
+
+        <p>
+          Daftar kepala desa dan perkembangan Desa Jebengplampitan
+        </p>
+
+      </div>
+
+      <div class="timeline">
+
+        <!-- ITEM -->
+        <div class="timeline-item left" data-aos="fade-right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <h4>A. PATRA MENGGALA</h4>
+
+            <p>
+              Patra menggala adalah ayah dari karta Sentana dan karta miharjo.
+              Patra menggala yang menjadi kades periode 1920 – 1930 hasil dari
+              masa kepemimpinan beliau tidak diketahui hasilnya.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item right" data-aos="fade-left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/kartom.png"
+              alt="Patra Menggala"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>B. KARTO MIHARJO Periode 1925 – 1940</h4>
+
+            <p>
+              Lahir di wonosobo pada tahun 1907. Mulai menjabat Kepala Desa
+              Tahun 1925 – 1940. Pada masa kepemimpinanya mulai merintis adanya
+              pasar desa Jebengplampitan yang pada saat ini masih ada.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item left" data-aos="fade-right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/kartas.png"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>C. KARTO SENTONO Periode 1942 – 1971</h4>
+
+            <p>
+              Pada masa kepemimpinanya mulai menata wilayah desa Jebengplampitan,
+              pembangunan jalan penghubung antar desa, berdirinya rumah sekolah
+              dasar sebagai sarana pendidikan masyarakat.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item right" data-aos="fade-left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/sumarjo.png"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>D. SUMARJO Periode 1972 – 1973</h4>
+
+            <p>
+              Menjadi PJ pertama Kepala Desa Jebengplampitan untuk sementara
+              waktu karena kekosongan jabatan kepala desa.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item left" data-aos="fade-right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <h4>E. SUWARJO Periode 1974</h4>
+
+            <p>
+              Suwarjo menjabat Kepala Desa selama 8 bulan.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item right" data-aos="fade-left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/sumarjo.png"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>F. SUMARJO PJ. Kades Periode 1975 – 1979</h4>
+
+            <p>
+              Desa mulai berbenah di bidang pembangunan khususnya infrastruktur,
+              pelebaran jalan utama, pembangunan lapangan, pendirian balai desa,
+              dan pemindahan gedung SD.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item left" data-aos="fade-right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/kartaw.png"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>G. KARTA WINTANA Periode 1980 – 1988</h4>
+
+            <p>
+              Berhasil merehab gedung SD yang semula terbuat dari papan menjadi
+              bangunan tembok semen melalui program Inpres.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item right" data-aos="fade-left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/sukijo.png"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>H. SUKIJO Periode 1989 – 1998</h4>
+
+            <p>
+              Masa kepemimpinan Sukijo menghasilkan berbagai pembangunan penting
+              seperti jembatan, SMP Negeri 2, listrik masuk desa, pengaspalan
+              jalan, serta pembangunan tempat ibadah.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item left" data-aos="fade-right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <h4>I. SURAHMAN Periode 1999 – 2001</h4>
+
+            <p>
+              Menjabat selama tiga tahun sebagai kepala desa Jebengplampitan.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item right" data-aos="fade-left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/ponijan.jpg"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>J. MADYO RAHARJO Periode 2003 – 2008</h4>
+
+            <p>
+              Fokus pada pembangunan jalan antar dukuh dan pengembangan
+              infrastruktur desa bekerja sama dengan TMMD Manunggal.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item left" data-aos="fade-right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/kiro.jpg"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>K. KIRO Periode 2008 – 2013</h4>
+
+            <p>
+              Pada masa kepemimpinanya dilakukan pembangunan rabat beton,
+              tambahan gedung TK, rehab los pasar desa, dan rehab jembatan
+              gantung desa.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="timeline-item right" data-aos="fade-left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <img src="fotojp/ponijan.jpg"
+              class="timeline-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage(this.src)">
+
+            <h4>L. PONIJAN Periode 2013 – 2019</h4>
+
+            <p>
+              Fokus pada pengembangan dan penyempurnaan pembangunan desa yang
+              telah dilakukan pada periode sebelumnya.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MODAL IMAGE -->
+
+  <div class="modal fade" id="imageModal" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+
+      <div class="modal-content border-0 bg-transparent">
+
+        <button type="button"
+          class="btn-close btn-close-white ms-auto mb-2"
+          data-bs-dismiss="modal">
+        </button>
+
+        <img id="modalImage"
+          src=""
+          class="modal-img">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SCROLL TOP -->
+
+  <a href="#" class="scroll-top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+  </a>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 Desa Jebengplampitan — Website Profil Desa
+    </p>
+
+  </footer>
+
+  <!-- JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // SHOW IMAGE MODAL
+    function showImage(src){
+
+      document.getElementById("modalImage").src = src;
+
+    }
+
+    // NAVBAR EFFECT
+    window.addEventListener("scroll", function(){
+
+      const navbar = document.querySelector(".custom-nav");
+
+      navbar.classList.toggle("shadow-lg", window.scrollY > 30);
+
+    });
+
+  </script>
+
+</body>
+
+</html>
